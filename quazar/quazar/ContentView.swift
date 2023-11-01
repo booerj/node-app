@@ -48,7 +48,7 @@ class ContentViewViewModel: ObservableObject {
     @Published var alertType: AlertType? = nil
     
     func initializeNode() {
-        let command = "cd \(Bundle.main.resourcePath!); ./celestia light init --p2p.network arabica "
+        let command = "cd \(Bundle.main.resourcePath!); ./celestia light init --p2p.network celestia "
         
         let task = Process()
         task.launchPath = "/usr/bin/env"
@@ -102,7 +102,7 @@ class ContentViewViewModel: ObservableObject {
     }
     // handle errors for timeout
     func startNode() {
-        let command = "cd \(Bundle.main.resourcePath!); ./celestia light start --core.ip consensus-validator.celestia-arabica-10.com --p2p.network arabica"
+        let command = "cd \(Bundle.main.resourcePath!); ./celestia light start --core.ip rpc.celestia.pops.one --p2p.network celestia"
         
         let task = Process()
         task.launchPath = "/usr/bin/env"
@@ -203,7 +203,7 @@ class ContentViewViewModel: ObservableObject {
     }
     
     func querySamplingStats() {
-        let command = "cd \(Bundle.main.resourcePath!); ./celestia rpc das SamplingStats --auth $(./celestia light auth admin --p2p.network arabica)"
+        let command = "cd \(Bundle.main.resourcePath!); ./celestia rpc das SamplingStats --auth $(./celestia light auth admin --p2p.network celestia)"
         
         let task = Process()
         task.launchPath = "/usr/bin/env"
@@ -255,7 +255,7 @@ class ContentViewViewModel: ObservableObject {
     }
     // remove extra queries
     func queryAccountAddress() {
-       let command = "cd \(Bundle.main.resourcePath!); ./celestia rpc state AccountAddress --auth $(./celestia light auth admin --p2p.network arabica)"
+       let command = "cd \(Bundle.main.resourcePath!); ./celestia state account-address --auth $(./celestia light auth admin --p2p.network celestia)"
        
        let task = Process()
        task.launchPath = "/usr/bin/env"
@@ -386,7 +386,7 @@ class ContentViewViewModel: ObservableObject {
     }
     
     func checkBalance() {
-        let command = "cd \(Bundle.main.resourcePath!); ./celestia rpc state Balance --auth $(./celestia light auth admin --p2p.network arabica)"
+        let command = "cd \(Bundle.main.resourcePath!); ./celestia state balance --auth $(./celestia light auth admin --p2p.network celestia)"
         
         let task = Process()
         task.launchPath = "/usr/bin/env"
@@ -441,7 +441,7 @@ struct ContentView: View {
                             .font(.largeTitle)
                             .padding(.trailing)
                         Spacer()
-                        Text("Arabica devnet ☕️")
+                        Text("Mainnet")
                             .font(.largeTitle)
                             .padding(.leading)
                     }.padding()
@@ -615,7 +615,7 @@ struct ContentView: View {
                                         VStack {
                                             Text("🔎 Block explorer").font(.title2).padding(.vertical, 3)
                                             Text("Visit the explorer to surf the chain")
-                                            Link("explorer.celestia-arabica-10.com", destination: URL(string: "https://explorer.celestia-arabica-10.com")!)
+                                            Link("celenium.io/", destination: URL(string: "https://celenium.io/")!)
                                         }
                                     }
                                     .padding(5)
